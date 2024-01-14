@@ -1,0 +1,150 @@
+﻿<Window x:Class="FirebaseCRUD.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirebaseCRUD"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <TabControl>
+        <TabItem Header="Mostrar dades">
+            <DockPanel>
+                <ListView DockPanel.Dock="Top" x:Name="lvStudents" HorizontalAlignment="Center">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Nom" Width="120" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Id" Width="120" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Email" Width="120" DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Header="Average Score" Width="120" DisplayMemberBinding="{Binding AverageScore}"/>
+                            <GridViewColumn Header="Dual" Width="120" DisplayMemberBinding="{Binding Dual}"/>
+                            <GridViewColumn Header="Cicle" Width="120" DisplayMemberBinding="{Binding CicleCursat.FullName}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Afegir Student">
+            <Grid>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
+                    <Label Content="Name:" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbName" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <DockPanel Grid.ColumnSpan="2" Margin="0,45,0,0" Grid.RowSpan="2">
+                    <Label Content="Id:" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbId" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,45,0,0" Grid.RowSpan="2">
+                    <Label Content="Birthdate:" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbBirthdate" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <DockPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="0,45,0,0" Grid.RowSpan="2">
+                    <Label Content="Email:" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbEmail" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <DockPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,45,0,45" Grid.RowSpan="3">
+                    <Label Content="Hobbies (Separated with ,):" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbHobbies" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <DockPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="0,0,0,45" Grid.RowSpan="2">
+                    <Label Content="Average Score:" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbAverage" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <DockPanel Grid.Row="6" Grid.ColumnSpan="2" Margin="0,0,0,45" Grid.RowSpan="2">
+                    <Label Content="Dual:" DockPanel.Dock="Left"/>
+                    <RadioButton Content="Si" Name="rbSi"/>
+                    <RadioButton Content="No" Name="rbNo"/>
+                </DockPanel>
+                <DockPanel Grid.Row="7" Grid.ColumnSpan="2" Margin="0,0,0,45" Grid.RowSpan="2">
+                    <Label Content="Cicle:" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="tbCicle" DockPanel.Dock="Left" Margin="5"/>
+                </DockPanel>
+                <Button Content="Afegir" Name="btnAfegir" Grid.Row="8" Margin="6,6,6,6" Click="btnAfegir_Click"  Grid.ColumnSpan="2"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Modificar/Eliminar Student">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox SelectedIndex="{Binding Posicio}" x:Name="lstJugadors" HorizontalContentAlignment="Stretch" Grid.Column="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
+                        <Label Content="Name:" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbName2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <DockPanel Grid.ColumnSpan="2" Margin="0,45,0,0" Grid.RowSpan="2">
+                        <Label Content="Id:" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbId2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,45,0,0" Grid.RowSpan="2">
+                        <Label Content="Birthdate:" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbBirthdate2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="0,45,0,0" Grid.RowSpan="2">
+                        <Label Content="Email:" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbEmail2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,45,0,45" Grid.RowSpan="3">
+                        <Label Content="Hobbies (Separated with ,):" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbHobbies2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="0,0,0,45" Grid.RowSpan="2">
+                        <Label Content="Average Score:" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbAverage2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="6" Grid.ColumnSpan="2" Margin="0,0,0,45" Grid.RowSpan="2">
+                        <Label Content="Dual:" DockPanel.Dock="Left"/>
+                        <RadioButton Content="Si" Name="rbSi2"/>
+                        <RadioButton Content="No" Name="rbNo2"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="7" Grid.ColumnSpan="2" Margin="0,0,0,45" Grid.RowSpan="2">
+                        <Label Content="Cicle:" DockPanel.Dock="Left"/>
+                        <TextBox x:Name="tbCicle2" DockPanel.Dock="Left" Margin="5"/>
+                    </DockPanel>
+                    <Grid Grid.Row="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnModifica" Content="Modificar" Margin="5" Grid.Column="0" Click="btnModifica_Click"/>
+                        <Button x:Name="btnElimina" Content="Eliminar" Margin="5" Grid.Column="1" Click="btnElimina_Click"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
